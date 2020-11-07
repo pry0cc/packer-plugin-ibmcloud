@@ -44,6 +44,7 @@ RUN set -ex \
 RUN echo "[Step 2]: Setup Ansible"
 ###########################################################
 ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
 RUN apt-get -y install ansible
 
 # Fix "winrm or requests is not installed: No module named winrm"
@@ -81,7 +82,7 @@ RUN echo "[Step 4]: Download Packer dependencies"
 # See go.mod for other dependencies
 RUN set -ex \
     && cd $GOPATH/src/github.com \
-    && go get github.com/hashicorp/packer \
+    && go get -v github.com/hashicorp/packer \
     && go get golang.org/x/text
 
 
@@ -107,6 +108,11 @@ RUN set -ex \
     && go generate ./builder/ibmcloud/... \
     && go build
 
+RUN set -ex \
+	&& cd $GOPATH/src/github.com/ibmcloud/packer-builder-ibmcloud \
+	&& env GOOS=windows GOARCH=amd64 go build -o packer-builder-ibmcloud-windows \
+	&& env GOOS=linux GOARCH=amd64 go build -o packer-builder-ibmcloud-linux \
+	&& env GOOS=darwin GOARCH=amd64 go build -o packer-builder-ibmcloud-darwin
 ###########################################################
 RUN echo "IBM Packer Plugin created successfully!!!"
 ###########################################################
