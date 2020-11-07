@@ -2,6 +2,22 @@
 The IBM packer plugin creates Image template(.VHD) with pre-configured OS and installed softwares on IBMCloud 
 
 # Easy Mode
+
+## If you trust me
+If you trust I'm not a 'baddie trying to sploit ur box' then you can literally run a few commands because I did all the work for you.
+
+### Installing ibm cloud plugin for Linux
+```
+wget -O ~/.packer.d/plugins/packer-builder-ibmcloud https://raw.githubusercontent.com/pry0cc/packer-plugin-ibmcloud/master/output/packer-builder-ibmcloud-linux
+```
+### Installing ibm cloud plugin for MacOS
+```
+wget -O ~/.packer.d/plugins/packer-builder-ibmcloud https://raw.githubusercontent.com/pry0cc/packer-plugin-ibmcloud/master/output/packer-builder-ibmcloud-darwin
+```
+
+
+## If you don't trust me
+
 This repo contains a few extra scripts to help you on your way, to use packer with IBM Cloud.
 
 First, just run the build script:
