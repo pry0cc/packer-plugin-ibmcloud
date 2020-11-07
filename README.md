@@ -1,6 +1,32 @@
 # IBM Packer Plugin
 The IBM packer plugin creates Image template(.VHD) with pre-configured OS and installed softwares on IBMCloud 
 
+# Easy Mode
+This repo contains a few extra scripts to help you on your way, to use packer with IBM Cloud.
+
+First, just run the build script:
+
+```
+./build.sh
+```
+
+The build script will build the packer plugin for ibm, for each main operating system.
+
+Inside `./output/`, you fill find support for darwin, linux & windows.
+
+Select the appropriate file for your operating system and move to the ~/packer.d/plugins/ directory.
+
+## MacOS
+```
+cp output/packer-builder-ibmcloud-darwin ~/.packer.d/plugins/packer-builder-ibmcloud
+```
+
+## Linux 
+```
+cp output/packer-builder-ibmcloud-linux ~/.packer.d/plugins/packer-builder-ibmcloud
+```
+
+
 ## IBM Packer Builder
 The builder takes a source OS base Linux or Windows image (identified by it's global ID), provisions an Instance, adds additional applications & services to it and generates an Image Template out of the Instance on different platforms. These generated Images can be reused to launch new VSI Instances within IBMCloud.
 The builder does not manage VSI images. Once it creates an image, it is up to you to use it or delete it.
